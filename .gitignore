@@ -1,0 +1,41 @@
+# Visual Studio / VS Code
+.vscode/
+.vs/
+*.user
+*.suo
+
+# Build / 執行相關
+bin/
+obj/
+out/
+TestResults/
+*.log
+*.db
+
+# .NET 相關暫存
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# 暫存或使用者檔案
+*.swp
+*.bak
+*.tmp
+*.tmp.*
+*.~*
+*.DS_Store
+Thumbs.db
+
+# dotnet-user-secrets
+secrets.json
+
+# 排除環境變數設定
+.env
+.env.*
+
+# Rider IDE
+.idea/
+*.iml
+
+# MacOS
+.DS_Store
