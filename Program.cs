@@ -1,23 +1,25 @@
+// Program.cs - Render-ready version for ASP.NET Core Web API
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// 加入 Controller 支援
+// Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Swagger 設定（可選）
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Dynamic port support for Render.com
+//the following line reads the PORT from environment variables:
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5197";
+app.Urls.Add($"http://0.0.0.0:{port}");
 
-//app.UseHttpsRedirection();
-
-// 啟用 Controller 路由（這是關鍵！）
+// Configure the HTTP request pipeline.
+app.UseRouting();
 app.UseAuthorization();
-app.MapControllers(); // ← 這行讓 LineController 能接收請求
+
+app.MapControllers();
 
 app.Run();
